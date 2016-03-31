@@ -21,6 +21,7 @@ mongoose.connection.once('open', function() {
 
 app.post('/api/user', userCtrl.createUser);
 app.get('/api/user', userCtrl.getUser);
+app.get('/api/users', userCtrl.getUsers)
 app.put('/api/user/:id', userCtrl.updateUser);
 app.delete('api/user/:id', userCtrl.deleteUser);
 

@@ -1,36 +1,63 @@
 angular.module('vidInterface')
 
-.controller('directoryCtrl', function($scope, Video) {
+.controller('loginCtrl', function($scope, $state, loginService) {
 
-	var video = Video.get({ id: $scope.id }, function() {
-		console.log(video);
-	})
+	$scope.users = [];
 
-	var videos = Video.query(function() {
-		console.log(videos);
-	})
+	$scope.email = "email";
 
-	$scope.video = new Video();
+	$scope.password = "password";
 
-	$scope.video.$save(function() {
-		$scope.video;
-	})
-
-	$scope.comment = Video.get({ id: $scope.id }, function() {
-		$scope.video.data = "comments?";
-		$scope.video.$update(function() {
-
-		});
-	})
-
-
-
-	$scope.doSearch = function () {
-
-    var type = $scope.mediaType;
-    $scope.foundItems = directoryService.search().length;
-    console.log("Found items :"+ $scope.foundItems + "for search term :"+ $scope.searchTerm);
-    $location.path("/search");
+	$scope.getUsers = function() {
+		loginService.getUsers()
+		.then(function(response) {
+			response.forEach(function(user) {
+				$scope.users.push(user);
+			})
+		})
 	}
+
+	$scope.getUsers();
+
+	$scope.verifyUser = function() {
+		for (var i = 0; i < $scope.users.length; i++) {
+			if ($scope.email === $scope.users[i].email && $scope.password === $scope.users[i].password) {
+				$scope.youMayEnter($scope.users[i].id);
+			}
+		}
+	}
+
+	$scope.youMayEnter = function(userId) {
+		$state.go('search', {id: userId})
+	}
+
+	// var video = Video.get({ id: $scope.id }, function() {
+	// 	console.log(video);
+	// })
+
+	// var videos = Video.query(function() {
+	// 	console.log(videos);
+	// })
+
+	// $scope.video = new Video();
+
+	// $scope.video.$save(function() {
+	// 	$scope.video;
+	// })
+
+	// $scope.comment = Video.get({ id: $scope.id }, function() {
+	// 	$scope.video.data = "comments?";
+	// 	$scope.video.$update(function() {
+
+	// 	});
+	// })
+
+	// $scope.doSearch = function () {
+
+ //    var type = $scope.mediaType;
+ //    $scope.foundItems = directoryService.search().length;
+ //    console.log("Found items :"+ $scope.foundItems + "for search term :"+ $scope.searchTerm);
+ //    $location.path("/search");
+	// }
 
 })

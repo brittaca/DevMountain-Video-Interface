@@ -1,26 +1,19 @@
-<html>
-<head>
-    <title>Video Layout</title>
+<nav-bar></nav-bar>
 
- <script type="text/javascript" src="http://content.jwplatform.com/libraries/v4GQk7Uq.js"></script>
- <!-- <script type="text/javascript" src="http://content.jwplatform.com/libraries/c84iNGyb.js"></script> -->
-<!-- <script type="text/javascript" src="http://content.jwplatform.com/libraries/HsKZuV8T.js"></script> -->               
-<!-- 
-    <script type="text/javascript" src="http://content.jwplatform.com/libraries/X6vXb44o.js"></script>
-     -->
-</head>
-<body>
-    <br>
-<h1> Lesson 1: Lesson Title </h1>
+<div class="video-container">
+	<div class="video-format"
+
+<h1> {{video.lessontitle}} </h1>
 <!-- <iframe src="//content.jwplatform.com/players/v4GQk7Uq.html" width="480" height="270" frameborder="0" scrolling="auto" allowfullscreen></iframe> -->
 <div id='myElement'></div>
 ​
 This Lesson:
 ​
-<li><a href="javascript:loadPlaylistItem(0)">Part 1</a></li>
-<li><a href="javascript:loadPlaylistItem(1)">Part 2</a></li>
-<li><a href="javascript:loadPlaylistItem(2)">Part 3</a></li>
-​
+<!-- <p><a href="{{loadPlaylistItem(0)}}">{{video.playlist[0].title}}</a></p>
+<p><a href="{{loadPlaylistItem(1)}}">{{video.playlist[1].title}}</a></p>
+<p><a href="{{loadPlaylistItem(2)}}">{{video.playlise[2].title}}</a></p> -->
+
+<p ng-repeat="video in playlist"><a href="{{loadPlaylistItem()}}">{{video.title}}</a></p>
 ​
 ​
 </br>
@@ -29,58 +22,10 @@ This Lesson:
 Past Lessons:
 <br>
 ​
-<a href="javascript:loadVideo('hunter-peter', 'hunter-harbor-peace', 'hunter-adversity')">Howard W. Hunter- Lessons on Adversity - April 16, 1989 - Cohort -128</a>
-<!-- <li><a href="javascript:loadVideo('DaveSmith_2')">Dave Smith's Big O lecture</a></li> -->
-​
-    <script type="text/javascript">
-        var playerInstance = jwplayer("myElement");
-            playerInstance.setup({
-                playlist: [{
-                                file: 'http://54.200.225.18:1935/vods3/_definst_/mp4:amazons3/webdevvideos/meet_hire.mp4/playlist.m3u8',
-                                title: 'Meet & Hire'
-                            },
-                            {
-                                file: 'http://54.200.225.18:1935/vods3/_definst_/mp4:amazons3/webdevvideos/DaveSmith_2.mp4/playlist.m3u8',
-                                title: 'Dave Smith Big O'
-                            }
+<a href="{{loadVideo(playlistItem)}}">{{playlistItem.title}}</a>
 
-                            ],
-                height: 360,
-                width: 640,
-                // listbar: {
-                //  position: "right",
-                //  size: 200
-                // },
-                // primary: 'html5'
-            });
+<!-- <a href="javascript:loadVideo('hunter-peter', 'hunter-harbor-peace', 'hunter-adversity')">Howard W. Hunter- Lessons on Adversity - April 16, 1989 - Cohort -128</a> -->
 
-            function loadVideo(playItem1, playItem2, playItem3) { 
-                playerInstance.load([{
-                    // file: "http://54.200.225.18:1935/vods3/_definst_/mp4:amazons3/webdevvideos/"+playItem1+".mp4/playlist.m3u8"
-                                file: "http://54.200.225.18:1935/vods3/_definst_/mp4:amazons3/webdevvideos/"+playItem1+".mp4/playlist.m3u8",
-                                title: playItem1
-                            },
-                            {
-                                file: "http://54.200.225.18:1935/vods3/_definst_/mp4:amazons3/webdevvideos/"+playItem2+".mp4/playlist.m3u8",
-                                // title: playItem2
-                            },
-                            {
-                                file: "http://54.200.225.18:1935/vods3/_definst_/mp4:amazons3/webdevvideos/"+playItem3+".mp4/playlist.m3u8",
-                                // title: playItem3
-                           
-
-                            // ],
-        //          // file: "http://54.200.225.18:1935/vods3/_definst_/mp4:amazons3/webdevvideos/"+playItem1+".mp4/playlist.m3u8",
-        //          // title: "Test",
-                }]);
-                playerInstance.play();
-                };
-
-            function loadPlaylistItem(myIndex) { 
-                playerInstance.playlistItem(myIndex);
-                playerInstance.play();
-            };
-
-    </script>
-</body>
-</html>
+<!-- <li><a href="{{loadVideo('DaveSmith_2')}}">Dave Smith's Big O lecture</a></li> -->
+	</div>
+</div>

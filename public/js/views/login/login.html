@@ -4,10 +4,11 @@
     <div class="login-box">
       <header><div class="login-header">
       </div></header>
-        <div class="login-text"> login </div>
-        <div class="login-input-box"><input class="login-input"> </input></div>
-        <div class="login-input-box"><input class="login-input"> </input></div>
-        <button class="login-button"> submit </button>
+        <div class="login-text"> login</div>
+        <div class="login-input-box"> <input ng-model="email" class="login-input"></input></div>
+      
+        <div class="login-input-box"> <input ng-model="password" class="login-input"> </input></div>
+        <button class="login-button" ng-click="verifyUser()"> submit </button>
     </div>
   </div>
 </section>

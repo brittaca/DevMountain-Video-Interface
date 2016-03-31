@@ -13,7 +13,7 @@ module.exports = {
 	},
 
 	getUsers: function(req, res) {
-		User.find({user: req.query.name})
+		User.find({})
 		.exec( function(err, result) {
 			if (err) {
 				return res.status(500).send(err);
